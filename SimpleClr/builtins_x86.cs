@@ -184,6 +184,22 @@
             emit.Write((byte)(0xF8 - (slot * 8)));
         }
 
+        public void ldarg(int slot)
+        {
+            // push dword ptr [ebp+8]
+            emit.Write((byte)0xFF);
+            emit.Write((byte)0x75);
+            emit.Write((byte)(0x08 + (slot * 4)));
+        }
+
+        public void starg(int slot)
+        {
+            // pop dword ptr [ebp+8]
+            emit.Write((byte)0x8F);
+            emit.Write((byte)0x45);
+            emit.Write((byte)(0x08 + (slot * 4)));
+        }
+
         public void nop()
         {
             this.SetPositionPoint();

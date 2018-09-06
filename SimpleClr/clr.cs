@@ -40,6 +40,18 @@
         public const byte Brtrue_s = 51;
         public const byte Brfalse_s = 52;
 
+        public const byte Ldarg = 60;
+        public const byte Ldarg_0 = 61;
+        public const byte Ldarg_1 = 62;
+        public const byte Ldarg_2 = 63;
+        public const byte Ldarg_3 = 64;
+
+        public const byte Starg = 70;
+        public const byte Starg_0 = 71;
+        public const byte Starg_1 = 72;
+        public const byte Starg_2 = 73;
+        public const byte Starg_3 = 74;
+
         private static bool IsOverflowOfBoundary(byte* current, byte* ending, int ofs = 0)
         {
             byte* p = current + ofs;
@@ -69,16 +81,19 @@
                         else if (op == Ldc_1) builtins.ldc(1);
                         else if (op == Ldc_2) builtins.ldc(2);
                         else if (op == Ldc_3) builtins.ldc(3);
+
                         else if (op == Ldloc) builtins.ldloc(*il++);
                         else if (op == Ldloc_0) builtins.ldloc(0);
                         else if (op == Ldloc_1) builtins.ldloc(1);
                         else if (op == Ldloc_2) builtins.ldloc(2);
                         else if (op == Ldloc_3) builtins.ldloc(3);
+
                         else if (op == Stloc) builtins.stloc(*il++);
                         else if (op == Stloc_0) builtins.stloc(0);
                         else if (op == Stloc_1) builtins.stloc(1);
                         else if (op == Stloc_2) builtins.stloc(2);
                         else if (op == Stloc_3) builtins.stloc(3);
+
                         else if (op == Nop) builtins.nop();
                         else if (op == Add) builtins.add();
                         else if (op == Sub) builtins.sub();
@@ -88,6 +103,7 @@
                         else if (op == Inc) builtins.inc();
                         else if (op == Dec) builtins.dec();
                         else if (op == Ret) builtins.ret();
+
                         else if (op == Clt || op == Ceq || op == Cgt)
                         {
                             if (!IsOverflowOfBoundary(il, ending) && (*il == Brfalse_s || *il == Brtrue_s))
@@ -129,6 +145,18 @@
                             il += 4;
                             builtins.br(position, op == Brtrue_s);
                         }
+
+                        else if (op == Ldarg) builtins.ldarg(*il++);
+                        else if (op == Ldarg_0) builtins.ldarg(0);
+                        else if (op == Ldarg_1) builtins.ldarg(1);
+                        else if (op == Ldarg_2) builtins.ldarg(2);
+                        else if (op == Ldarg_3) builtins.ldarg(3);
+
+                        else if (op == Starg) builtins.starg(*il++);
+                        else if (op == Starg_0) builtins.starg(0);
+                        else if (op == Starg_1) builtins.starg(1);
+                        else if (op == Starg_2) builtins.starg(2);
+                        else if (op == Starg_3) builtins.starg(3);
                     }
                 }
             }

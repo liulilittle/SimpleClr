@@ -43,5 +43,9 @@
         void brcmpc(int position, int comparison, bool condition);
 
         void bgeorble(int position, bool greaterthanorequal);
+
+        void starg(int slot);
+
+        void ldarg(int slot);
     }
 }

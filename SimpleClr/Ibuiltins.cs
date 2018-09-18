@@ -47,5 +47,7 @@
         void starg(int slot);
 
         void ldarg(int slot);
+
+        void localloc();
     }
 }

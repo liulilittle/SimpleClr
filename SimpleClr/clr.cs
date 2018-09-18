@@ -52,6 +52,8 @@
         public const byte Starg_2 = 73;
         public const byte Starg_3 = 74;
 
+        public const byte Localloc = 80;
+
         private static bool IsOverflowOfBoundary(byte* current, byte* ending, int ofs = 0)
         {
             byte* p = current + ofs;
@@ -157,6 +159,8 @@
                         else if (op == Starg_1) builtins.starg(1);
                         else if (op == Starg_2) builtins.starg(2);
                         else if (op == Starg_3) builtins.starg(3);
+
+                        else if (op == Localloc) builtins.localloc();
                     }
                 }
             }

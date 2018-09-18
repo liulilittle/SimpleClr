@@ -552,5 +552,17 @@
                 emit.Write((byte)0x8E);
             }
         }
+
+        public void localloc()
+        {
+            this.SetPositionPoint();
+            // pop eax
+            // sub esp,eax
+            // push esp
+            emit.Write((byte)0x58);
+            emit.Write((byte)0x2B);
+            emit.Write((byte)0xE0);
+            emit.Write((byte)0x54);
+        }
     }
 }
